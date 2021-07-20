@@ -58,7 +58,7 @@ class User(db.Model):
 def home():
     return render_template('home.html',
                            subtitle='Home Page',
-                           text='This is the home page')
+                           text='Welcome to the Squirrel Finder!')
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -107,6 +107,14 @@ def register():
             flash(f'Account created for {form.email.data}!', 'success')
             return redirect(url_for('home'))  # if so - send to home page
     return render_template('register.html', title='Register', form=form)
+
+@app.route("/learn")
+def learn():
+    return render_template('learn.html', subtitle='Learn', text='This is where you can learn about the squirrels around you')
+
+@app.route("/listen")
+def listen():
+    return render_template('listen.html', subtitle='Listen', text='This is where you can listen to different squirrels')
 
 
 if __name__ == '__main__':
