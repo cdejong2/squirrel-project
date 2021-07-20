@@ -134,3 +134,12 @@ a.article-title:hover {
 img {
     border-radius: 100%;
 }
+a{
+    color: #5b4f45;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #5b4f45;
+    text-decoration: none;
+}
