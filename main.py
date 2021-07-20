@@ -127,11 +127,9 @@ def learn():
 
 @app.route("/listen")
 def listen():
-    return render_template(
-        'listen.html',
-        subtitle='Listen',
-        text='Audio files of different sounds squirrels make will \
-        be added here.')
+    TITLE = "Listen"
+    FILE_NAME = "Squirrel Chirping and Barking.wav"
+    return render_template('listen.html', songName=TITLE, file=FILE_NAME)
 
 
 if __name__ == '__main__':
