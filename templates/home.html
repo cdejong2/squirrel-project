@@ -1,10 +1,15 @@
-{% extends "layout.html" %} {% block content %} <title> Home</title> <h2>{{ subtitle }}</h2>
+{% extends "layout.html" %} {% block content %} <title> Home</title>
+<h2>{{ subtitle }}</h2>
 <p>{{ text }}</p>
-
-
-<a href="https://www.instagram.com/squirrelsofvassar/">
-    <img src='/static/sofv.png' alt="@squirrelsofvassar" style="width:300px;height:300px;">
-</a>
-<a href="https://www.instagram.com/squirrels_of_hopkins/">
-    <img src='/static/sofjh.png' alt="@squirrels_of_hopkins" style="width:300px;height:300px;">
-</a> {% endblock content %}
+<div class='outline'>
+    <h1>Social Media</h1>
+    <p>click on image to be redirected to instagram accounts</p>
+    <div id='socials'>
+        <a href="https://www.instagram.com/squirrelsofvassar/">
+            <img src='/static/sofv.png' alt="@squirrelsofvassar" style="width:300px;height:300px;">
+        </a>
+        <a href="https://www.instagram.com/squirrels_of_hopkins/">
+            <img src='/static/sofjh.png' alt="@squirrels_of_hopkins" style="width:300px;height:300px;">
+        </a>
+    </div>
+</div> {% endblock content %}
