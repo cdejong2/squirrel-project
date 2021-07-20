@@ -2,6 +2,7 @@ import pandas as pd
 from sodapy import Socrata
 from main import db
 
+
 def find_squirrel(hectare):
     with Socrata("data.cityofnewyork.us", None) as client:
         results = client.get("vfnx-vebw", hectare=hectare)
@@ -36,14 +37,16 @@ def find_squirrel(hectare):
             activity.append('indifferent')
         if row["runs_from"]:
             activity.append('runs from')
-        
-        print("ID: {}\tHectare: {}\tColor: {}\tAge: {}\tLocation: {}\tActivities: {}"
+
+        print("ID: {}\tHectare: {}\tColor: {}\tAge: {}\tLocation: {} \
+              \tActivities: {}"
               .format(row['unique_squirrel_id'],
                       row['hectare'],
                       row['primary_fur_color'],
                       row["age"],
                       row["location"],
                       ' '.join([str(elem) for elem in activity])))
+
 
 if __name__ == "__main__":
     find_squirrel('22F')
