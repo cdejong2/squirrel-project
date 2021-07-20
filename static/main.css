@@ -4,20 +4,29 @@ body {
     margin-top: 5rem;
 }
 
-div.outline {
-    border: 2px solid black;
-    background-color: #f1ead7;
-    padding: 20px;
-    background-size: auto;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #000000;
 }
 
 #socials {
-    margin: 50px;
-    padding: 20px;
+    width: 320px;
+    padding: 10px 10px 20px 10px;
+    background-color: white;
+    border: 1px solid #BFBFBF;
+    margin: 20px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: #000000;
+#socials:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+.caption{
+    text-align: center;
+  padding: 10px 20px;
 }
 
 .bg-steel {
