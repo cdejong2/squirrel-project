@@ -12,26 +12,17 @@ from wtforms.validators import (
 )
 
 
-class SignupForm(FlaskForm):
-    """Sign up for a user account."""
-    email = StringField(
-        'Email',
-        [
-            Email(message='Not a valid email address.'),
-            DataRequired()
-        ]
-    )
-    password = PasswordField(
-        'Password',
-        [
-            DataRequired(message="Please enter a password."),
-        ]
-    )
-    confirmPassword = PasswordField(
-        'Repeat Password',
-        [
-            EqualTo(password, message='Passwords must match.')
-        ]
-    )
-    recaptcha = RecaptchaField()
+class RegistrationForm(FlaskForm):
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password',
+                                     validators=[DataRequired(),
+                                                 EqualTo('password')])
+    submit = SubmitField('Sign Up')
+
+
+class LoginForm(FlaskForm):
+    email = StringField('Email')
+    password = PasswordField('Password')
     submit = SubmitField('Submit')
