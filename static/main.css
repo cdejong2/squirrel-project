@@ -22,11 +22,35 @@ h6 {
 }
 
 #socials:hover {
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
 }
-.caption{
+
+.social-section {
+    grid-area: sArea;
+}
+
+.grid-container {
+    display: grid;
+    grid-template: auto / auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.social {
+    grid-area: myArea;
+}
+
+.grid-container-home {
+    display: grid;
+    grid-template-areas: '. .'
+        'myArea myArea';
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.caption {
     text-align: center;
-  padding: 10px 20px;
+    padding: 10px 20px;
 }
 
 .bg-steel {
@@ -50,7 +74,7 @@ h6 {
     padding: 10px 20px;
     border: 1px solid #000000;
     border-radius: 3px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .article-title {
@@ -97,10 +121,16 @@ a.article-title:hover {
 }
 
 .account-heading {
-  font-size: 2.5rem;
+    font-size: 2.5rem;
 }
-
+.btn-outline-info {
+    color: #5b4f45;
+    border-color: #5b4f45;
+}
+.btn:hover {
+   background-color: #c4836a; 
+    border-color: #5b4f45;
+}
 img {
     border-radius: 100%;
 }
-
