@@ -37,7 +37,13 @@ def find_squirrel(hectare):
         if row["runs_from"]:
             activity.append('runs from')
         
-        print("{} {} {} {} {} {}".format(row['unique_squirrel_id'],row['hectare'],row['primary_fur_color'],row["age"],row["location"], activity))
+        print("ID: {}\tHectare: {}\tColor: {}\tAge: {}\tLocation: {}\tActivities: {}"
+              .format(row['unique_squirrel_id'],
+                      row['hectare'],
+                      row['primary_fur_color'],
+                      row["age"],
+                      row["location"],
+                      ' '.join([str(elem) for elem in activity])))
 
 if __name__ == "__main__":
-    find_squirrel('02C')
+    find_squirrel('22F')
