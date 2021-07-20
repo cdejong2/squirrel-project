@@ -1,10 +1,42 @@
-{% extends "layout.html" %} {% block content %} <title> Home</title> <h2>{{ subtitle }}</h2>
+<<<<<<< HEAD
+{% extends "layout.html" %}
+{% block content %} 
+<title> Home</title>
+<h2>{{ subtitle }}</h2>
 <p>{{ text }}</p>
 
+<section class='line'>
+    <figure class="line__figure figure">
+        <a href="https://www.instagram.com/squirrelsofvassar/">
+            <img title="Squirrels of Vassar" src='/static/sofv.png' alt="@squirrelsofvassar" style="width:200px;height:200px;">
+            <figcaption>Squirrels of Vassar</figcaption>
+        </a>
+    </figure>
+    
+    
+    <figure class="line__figure figure">
+        <a href="https://www.instagram.com/squirrels_of_hopkins/">
+            <img title="Squirrels of Hopkins" src='/static/sofjh.png' alt="@squirrels_of_hopkins" style="width:200px;height:200px;">
+            <figcaption>Squirrels of Hopkins</figcaption>
+        </a>
+    </figure>
+</section>
 
-<a href="https://www.instagram.com/squirrelsofvassar/">
-    <img src='/static/sofv.png' alt="@squirrelsofvassar" style="width:300px;height:300px;">
-</a>
-<a href="https://www.instagram.com/squirrels_of_hopkins/">
-    <img src='/static/sofjh.png' alt="@squirrels_of_hopkins" style="width:300px;height:300px;">
-</a> {% endblock content %}
+{% endblock content %}
+=======
+{% extends "layout.html" %} {% block content %} <title> Home</title>
+<h2>{{ subtitle }}</h2>
+<p>{{ text }}</p>
+<div class='outline'>
+    <h1>Social Media</h1>
+    <p>click on image to be redirected to instagram accounts</p>
+    <div id='socials'>
+        <a href="https://www.instagram.com/squirrelsofvassar/">
+            <img src='/static/sofv.png' alt="@squirrelsofvassar" style="width:300px;height:300px;">
+        </a>
+        <a href="https://www.instagram.com/squirrels_of_hopkins/">
+            <img src='/static/sofjh.png' alt="@squirrels_of_hopkins" style="width:300px;height:300px;">
+        </a>
+    </div>
+</div> {% endblock content %}
+>>>>>>> ef8e4fef7d13b7e3105d62315b242aade52ec6b4
