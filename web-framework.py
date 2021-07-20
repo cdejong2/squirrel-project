@@ -11,7 +11,7 @@ def learn():
     return render_template('learn.html', subtitle='Learn', text='This is where you can learn about the squirrels around you')
 
 @app.route("/listen")
-def learn():
+def listen():
     return render_template('listen.html', subtitle='Listen', text='This is where you can listen to different squirrels')
 
 @app.route("/login/register")
