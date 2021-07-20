@@ -1,8 +1,10 @@
-from flask import Flask, render_template, url_for, flash, redirect, request, abort
+from flask import Flask, render_template, url_for, flash, \
+    redirect, request, abort
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from flask_behind_proxy import FlaskBehindProxy
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
+from flask_login import LoginManager, UserMixin, login_required, \
+    login_user, logout_user, current_user
 from sqlalchemy import exc
 from forms import LoginForm, RegistrationForm
 
@@ -15,6 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -55,14 +58,16 @@ class User(db.Model):
 
 
 @app.route("/")
+@app.route("/home")
 def home():
     return render_template('home.html',
                            subtitle='Home Page',
-                           text='Welcome to the Squirrel Finder!')
+                           text='Welcome to Squirrel Collector!')
+
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    """For GET requests, display the login form. 
+    """For GET requests, display the login form.
     For POSTS, login the current user by processing the form.
 
     """
@@ -78,6 +83,7 @@ def login():
                 return redirect(url_for("home"))
     return render_template("login.html", form=form)
 
+
 @app.route("/logout", methods=["GET"])
 @login_required
 def logout():
@@ -88,6 +94,7 @@ def logout():
     db.session.commit()
     logout_user()
     return render_template("logout.html")
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -108,13 +115,23 @@ def register():
             return redirect(url_for('home'))  # if so - send to home page
     return render_template('register.html', title='Register', form=form)
 
+
 @app.route("/learn")
 def learn():
-    return render_template('learn.html', subtitle='Learn', text='This is where you can learn about the squirrels around you')
+    return render_template(
+        'learn.html',
+        subtitle='Learn',
+        text='More information about the Squirrel Census and the \
+        API will be provided here.')
+
 
 @app.route("/listen")
 def listen():
-    return render_template('listen.html', subtitle='Listen', text='This is where you can listen to different squirrels')
+    return render_template(
+        'listen.html',
+        subtitle='Listen',
+        text='Audio files of different sounds squirrels make will \
+        be added here.')
 
 
 if __name__ == '__main__':
