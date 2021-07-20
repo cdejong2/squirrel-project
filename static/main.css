@@ -79,3 +79,38 @@ a.article-title:hover {
   font-size: 2.5rem;
 }
 
+img {
+    border-radius: 50%;
+}
+
+a:link {
+    color: #c4836a;
+    bakcground-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #5b4f45;
+    bakcground-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #f5f5f5;
+    bakcground-color: transparent;
+    text-decoration: none;
+}
+
+.line{  /* Describes only positioning behaviour */
+    display: block; /* Not important, but helpful in this case */
+    clear: both;    /* Not important, but helpful in this case */
+}
+
+.line__figure{ /* Describes only positioning behaviour */
+    float:left;
+}
+
+.figure{ /* Describes only view representation. */
+    display: block; /* Not important, but helpful in this case */
+}
+

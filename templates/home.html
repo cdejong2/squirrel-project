@@ -1,10 +1,24 @@
-{% extends "layout.html" %} {% block content %} <title> Home</title> <h2>{{ subtitle }}</h2>
+{% extends "layout.html" %}
+{% block content %} 
+<title> Home</title>
+<h2>{{ subtitle }}</h2>
 <p>{{ text }}</p>
 
+<section class='line'>
+    <figure class="line__figure figure">
+        <a href="https://www.instagram.com/squirrelsofvassar/">
+            <img title="Squirrels of Vassar" src='/static/sofv.png' alt="@squirrelsofvassar" style="width:200px;height:200px;">
+            <figcaption>Squirrels of Vassar</figcaption>
+        </a>
+    </figure>
+    
+    
+    <figure class="line__figure figure">
+        <a href="https://www.instagram.com/squirrels_of_hopkins/">
+            <img title="Squirrels of Hopkins" src='/static/sofjh.png' alt="@squirrels_of_hopkins" style="width:200px;height:200px;">
+            <figcaption>Squirrels of Hopkins</figcaption>
+        </a>
+    </figure>
+</section>
 
-<a href="https://www.instagram.com/squirrelsofvassar/">
-    <img src='/static/sofv.png' alt="@squirrelsofvassar" style="width:300px;height:300px;">
-</a>
-<a href="https://www.instagram.com/squirrels_of_hopkins/">
-    <img src='/static/sofjh.png' alt="@squirrels_of_hopkins" style="width:300px;height:300px;">
-</a> {% endblock content %}
+{% endblock content %}
