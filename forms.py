@@ -19,10 +19,10 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(),
                                                  EqualTo('password')])
-    submit = SubmitField('Sign Up')
+    submit = SubmitField('Register')
 
 
 class LoginForm(FlaskForm):
     email = StringField('Email')
     password = PasswordField('Password')
-    submit = SubmitField('Submit')
+    submit = SubmitField('Login')

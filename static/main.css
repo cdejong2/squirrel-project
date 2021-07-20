@@ -1,23 +1,23 @@
 body {
-  background: #fafafa;
-  color: #333333;
+  background: #cdbdad;
+  color: #000000;
   margin-top: 5rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+  color: #000000;
 }
 
 .bg-steel {
-  background-color: #333333;
+  background-color: #c4836a;
 }
 
 .site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+  color: #000000;
 }
 
 .site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
+  color: #e4e2e6;
 }
 
 .site-header .navbar-nav .nav-link.active {
@@ -25,19 +25,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .content-section {
-  background: #ffffff;
+  background: #f1ead7;
   padding: 10px 20px;
-  border: 1px solid #dddddd;
+  border: 1px solid #000000;
   border-radius: 3px;
   margin-bottom: 20px;
 }
 
 .article-title {
-  color: #444444;
+  color: #000000;
 }
 
 a.article-title:hover {
-  color: #428bca;
+  color: #c4836a;
   text-decoration: none;
 }
 
@@ -54,11 +54,11 @@ a.article-title:hover {
 .article-metadata {
   padding-bottom: 1px;
   margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+  border-bottom: 1px solid #f5f5f5
 }
 
 .article-metadata a:hover {
-  color: #333;
+  color: #5b4f45;
   text-decoration: none;
 }
 
@@ -78,3 +78,4 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+
