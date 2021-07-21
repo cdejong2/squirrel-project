@@ -9,7 +9,7 @@ def find_squirrel(hectare):
     # Convert to pandas DataFrame
     return pd.DataFrame.from_records(results)
 
-def __str__(row):
+def stringme(row):
     activity = []
     if row["running"]:
         activity.append('running')
@@ -38,10 +38,8 @@ def __str__(row):
     if row["runs_from"]:
         activity.append('runs from')
     
-    return ("ID: {}\tHectare: {}\tColor: {}\tAge: {}\tLocation: {}\tActivities: {}"
-            .format(row['unique_squirrel_id'],
-                    row['hectare'],
-                    row['primary_fur_color'],
+    return ("Color: {}\tAge: {}\tLocation: {}\tActivities: {}"
+            .format(row['primary_fur_color'],
                     row["age"],row["location"],
                     ' '.join([str(elem) for elem in activity])))
 

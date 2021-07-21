@@ -6,9 +6,9 @@ from flask_behind_proxy import FlaskBehindProxy
 from flask_login import LoginManager, UserMixin, login_required, \
     login_user, logout_user, current_user
 from sqlalchemy import exc
-from forms import LoginForm, RegistrationForm
+from forms import LoginForm, RegistrationForm, SearchForm
 import pandas as pd
-import squirrelapi
+from squirrelapi import find_squirrel, stringme
 
 # Boilerplate code from previous project --- To Be Replaced
 app = Flask(__name__)
@@ -137,11 +137,15 @@ def listen():
 @app.route("/squirrel_search", methods=['GET', 'POST'])
 @login_required
 def squirrel_search():
-    if request.method == 'POST':
-        number = request.form['integer']
-        letter = request.form['letter']
-        return redirect(url_for('squirrels_found',hectare=(number + letter)))
-    return render_template('squirrels_found.html', subtitle = "Search for squirrels", text = "Look squirrels up by hectare: " )
+    form = SearchForm()
+    if form.validate_on_submit():
+        number = form.hectare_number.data
+        letter = form.hectare_letter.data
+        hectare = number + letter
+        print(hectare)
+        flash(f'Searching in hectare {hectare}', 'success')
+        return redirect(url_for('squirrels_found', hectare=hectare))
+    return render_template('squirrel_search.html', form=form)
                         
                         
 @app.route("/squirrels_found", methods=['GET', 'POST'])
@@ -151,11 +155,12 @@ def squirrels_found():
     squirrels = find_squirrel(hectare)
     squirrel_list = []
     for idx, row in squirrels.iterrows():
-        squirrel_list.append(str(row))
+        print(stringme(row))
+        squirrel_list.append(row)
     if request.method == 'POST':
         print(request.form.getlist('squirrel'))
         
-    return render_template('squirrels_found.html', data=squirrel_list)
+    return render_template('squirrels_found.html', data=squirrel_list, stringme=stringme)
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
