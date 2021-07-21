@@ -143,3 +143,9 @@ a:visited {
     color: #5b4f45;
     text-decoration: none;
 }
+
+.center {
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
