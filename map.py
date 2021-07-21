@@ -3,6 +3,9 @@ import geopandas as gpd
 import pandas as pd
 from sodapy import Socrata
 
+TOKEN = 'pk.eyJ1IjoiY2Rlam9uZzIiLCJhIjoiY\
+2tyZG9mbmN3NWVkNDMwcnU2N202Z2pzdiJ9.wi9xk04T5EsRZ6i2XGfIZg'
+
 
 def createMap():
     with Socrata("data.cityofnewyork.us", None) as client:
@@ -16,9 +19,7 @@ def createMap():
         df.loc[len(df.index)] = [float(point['coordinates'][0]),
                                  float(point['coordinates'][1])]
 
-    px.set_mapbox_access_token('pk.eyJ1IjoiY2Rlam9uZzIiLCJhIjoiY \
-                               2tyZG9mbmN3NWVkNDMwcnU2N202Z2pzdiJ9.wi \
-                               9xk04T5EsRZ6i2XGfIZg')
+    px.set_mapbox_access_token(TOKEN)
     fig = px.scatter_mapbox(df,
                             lat='y',
                             lon='x',
