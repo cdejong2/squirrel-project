@@ -64,6 +64,10 @@ def home():
                            subtitle='Home Page',
                            text='Welcome to Squirrel Collector!')
 
+@app.route('/map')
+def map_func():
+	return render_template('example.html')
+
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
