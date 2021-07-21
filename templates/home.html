@@ -1,6 +1,6 @@
 {% extends "layout.html" %} {% block content %} <title> Home</title>
-<div class='grid-container-home'>
-<div class='content-section'>
+<div class='grid-container-home '>
+<div class='content-section container'>
     <h2>{{ subtitle }}</h2>
     <p>{{ text }}</p>
 </div>
@@ -12,18 +12,19 @@
         <p>Subset of 1000 squirrels, data courtesy of the Squirrel Census API.</p>
     </div>
 </div>
-<div class='content-section social'>
+<div class='content-section container social'>
     <h1>Social Media</h1>
     <p>click on image to be redirected to instagram accounts</p>
-    <div class='grid-container'>
+    <div class="container">
+  <div class="row">
         <div id='socials'>
             <a href="https://www.instagram.com/squirrelsofvassar/">
-                <img src='/static/sofv.png' alt="@squirrelsofvassar" style="width:300px;height:300px;">
+                <img src='/static/sofv.png' alt="@squirrelsofvassar" style="width:300px;">
                 <div class='caption'>
                     <p>@squirrelsofvassar on Instagram</p>
                 </div>
             </a>
-        </div>
+          </div>
         <div id='socials'>
             <a href="https://www.instagram.com/squirrels_of_hopkins/">
                 <img src='/static/sofjh.png' alt="@squirrels_of_hopkins" style="width:300px;height:300px;">
@@ -31,7 +32,7 @@
                     <p>@squirrels_of_hopkins on Instagram</p>
                 </div>
             </a>
-        </div>
+              </div>
     </div>
     </div>
 </div> {% endblock content %}
