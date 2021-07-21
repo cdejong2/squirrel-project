@@ -1,15 +1,32 @@
 {% extends "layout.html" %} {% block content %} <title> Home</title>
-<h2>{{ subtitle }}</h2>
-<p>{{ text }}</p>
-<div class='outline'>
+<div class='grid-container-home'>
+<div class='content-section'>
+    <h2>{{ subtitle }}</h2>
+    <p>{{ text }}</p>
+</div>
+<div class='content-section'>
+    <h2>Map space holder</h2>
+</div>
+<div class='content-section social'>
     <h1>Social Media</h1>
     <p>click on image to be redirected to instagram accounts</p>
-    <div id='socials'>
-        <a href="https://www.instagram.com/squirrelsofvassar/">
-            <img src='/static/sofv.png' alt="@squirrelsofvassar" style="width:300px;height:300px;">
-        </a>
-        <a href="https://www.instagram.com/squirrels_of_hopkins/">
-            <img src='/static/sofjh.png' alt="@squirrels_of_hopkins" style="width:300px;height:300px;">
-        </a>
+    <div class='grid-container'>
+        <div class='socials'>
+            <a href="https://www.instagram.com/squirrelsofvassar/">
+                <img src='/static/sofv.png' alt="@squirrelsofvassar" style="width:300px;height:300px;">
+                <div class='caption'>
+                    <p>@squirrelsofvassar on Instagram</p>
+                </div>
+            </a>
+        </div>
+        <div class='socials'>
+            <a href="https://www.instagram.com/squirrels_of_hopkins/">
+                <img src='/static/sofjh.png' alt="@squirrels_of_hopkins" style="width:300px;height:300px;">
+                <div class='caption'>
+                    <p>@squirrels_of_hopkins on Instagram</p>
+                </div>
+            </a>
+        </div>
     </div>
 </div> {% endblock content %}
+</div>

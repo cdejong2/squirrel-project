@@ -3,7 +3,8 @@ from wtforms import (
     StringField,
     TextAreaField,
     SubmitField,
-    PasswordField
+    PasswordField,
+    SelectField
 )
 from wtforms.validators import (
     DataRequired,
@@ -26,3 +27,9 @@ class LoginForm(FlaskForm):
     email = StringField('Email')
     password = PasswordField('Password')
     submit = SubmitField('Login')
+
+
+class SearchForm(FlaskForm):
+    select = SelectField('Search for anything on this page:')
+    search = StringField('')
+    submit = SubmitField('Search')

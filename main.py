@@ -1,12 +1,11 @@
-from flask import Flask, render_template, url_for, flash, \
-    redirect, request, abort
+from flask import Flask, render_template, url_for, flash, redirect, request, abort
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from flask_behind_proxy import FlaskBehindProxy
 from flask_login import LoginManager, UserMixin, login_required, \
     login_user, logout_user, current_user
 from sqlalchemy import exc
-from forms import LoginForm, RegistrationForm
+from forms import LoginForm, RegistrationForm, SearchForm
 
 # Boilerplate code from previous project --- To Be Replaced
 app = Flask(__name__)
@@ -71,6 +70,7 @@ def login():
     For POSTS, login the current user by processing the form.
 
     """
+
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.get(form.email.data)
@@ -130,6 +130,15 @@ def listen():
     TITLE = "Listen"
     FILE_NAME = "Squirrel Chirping and Barking.wav"
     return render_template('listen.html', songName=TITLE, file=FILE_NAME)
+
+
+# Search Function
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    form = SearchForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        return redirect((url_for('search_results', query=form.search.data)))  # or what you want
+    return render_template('search.html', form=form)
 
 
 if __name__ == '__main__':
