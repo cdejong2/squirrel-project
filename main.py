@@ -7,6 +7,7 @@ from flask_login import LoginManager, UserMixin, login_required, \
     login_user, logout_user, current_user
 from sqlalchemy import exc
 from forms import LoginForm, RegistrationForm
+from map import createMap
 
 # Boilerplate code from previous project --- To Be Replaced
 app = Flask(__name__)
@@ -17,6 +18,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
+createMap()
 
 
 @login_manager.user_loader
