@@ -26,15 +26,15 @@ class UsersTests(unittest.TestCase):
                              follow_redirects=True)
 
     def test_valid_email_registration(self):
-        response = self.register( 'test@example.com', 'FlaskIsAwesome')
+        response = self.register('test@example.com', 'FlaskIsAwesome')
         self.assertEqual(response.status_code, 200)
 
 
     def test_invalid_email_registration(self):
         response = self.register('test@example', 'FlaskIsAwesome')
-        self.assertIn(b'Not a valid email address.', response.data)
-        response = self.register('testexample.com', 'FlaskIsAwesome')
-        self.assertIn(b'Not a valid email address.', response.data)
+        self.assertIn(b'Invalid email address.', response.data)
+        response1 = self.register('testexample.com', 'FlaskIsAwesome')
+        self.assertIn(b'Invalid email address.', response1.data)
 
 
 if __name__ == "__main__":
