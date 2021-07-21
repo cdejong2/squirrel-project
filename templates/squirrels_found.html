@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %} 
+<title> Squirrels Found </title>
+<h2>{{ subtitle }}</h2>
+<p>{{ text }}</p>
+
+<section class='line'>
+    <div>
+        <form method="post">
+            {% for item in data %}
+                <input type="checkbox" name="squirrel" value ="{{ item }}" >
+            {% endfor %}
+            <input type="submit">
+            </form>
+
+    </div>
+</section>
+
+{% endblock content %}

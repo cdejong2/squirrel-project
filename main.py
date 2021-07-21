@@ -7,6 +7,8 @@ from flask_login import LoginManager, UserMixin, login_required, \
     login_user, logout_user, current_user
 from sqlalchemy import exc
 from forms import LoginForm, RegistrationForm
+import pandas as pd
+import squirrelapi
 
 # Boilerplate code from previous project --- To Be Replaced
 app = Flask(__name__)
@@ -131,6 +133,29 @@ def listen():
     FILE_NAME = "Squirrel Chirping and Barking.wav"
     return render_template('listen.html', songName=TITLE, file=FILE_NAME)
 
+
+@app.route("/squirrel_search", methods=['GET', 'POST'])
+@login_required
+def squirrel_search():
+    if request.method == 'POST':
+        number = request.form['integer']
+        letter = request.form['letter']
+        return redirect(url_for('squirrels_found',hectare=(number + letter)))
+    return render_template('squirrels_found.html', subtitle = "Search for squirrels", text = "Look squirrels up by hectare: " )
+                        
+                        
+@app.route("/squirrels_found", methods=['GET', 'POST'])
+@login_required
+def squirrels_found():
+    hectare = request.args.get('hectare', None)
+    squirrels = find_squirrel(hectare)
+    squirrel_list = []
+    for idx, row in squirrels.iterrows():
+        squirrel_list.append(str(row))
+    if request.method == 'POST':
+        print(request.form.getlist('squirrel'))
+        
+    return render_template('squirrels_found.html', data=squirrel_list)
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
