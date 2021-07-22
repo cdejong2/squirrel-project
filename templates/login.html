@@ -1,5 +1,6 @@
-{% extends "layout.html" %} {% block content %} <div class="content-section">
+{% extends "layout.html" %} {% block content %} <div class="contentblock">
     <title> Login</title>
+    <h2 class="text-center content-section" style= 'color: white; background-color: #5b4f45;'>Login</h2>
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
@@ -12,8 +13,9 @@
                 <div class="invalid-feedback"> {% for error in form.password.errors%} <span>{{error}}</span> {% endfor %} </div> {% else %} {{ form.password(class="form-control form-control-lg") }} {% endif %}
             </div>
         </fieldset>
-        <div class="form-group">
+        <div class="form-group text-center" style= 'margin: 20px;'>
             {{ form.submit(class="btn btn-outline-info") }}
+            <p style= 'margin: 20px;'>New to Squirrel Collector? <a href="/register" class="pe-auto">Register</a></p>
         </div>
     </form>
 </div> {% endblock content %}

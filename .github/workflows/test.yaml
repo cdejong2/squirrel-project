@@ -19,6 +19,13 @@ jobs:
           pip3 install flask-wtf
           pip3 install flask-sqlalchemy
           pip3 install flask-bcrypt
+          pip3 install flask_behind_proxy
+          pip3 install geopandas
+          pip3 install plotly
+          pip3 install sodapy
+          pip3 install flask_login
+          pip3 install sqlalchemy
+          pip3 install email-validator
 
       - name: Test webpages
         run: |
