@@ -1,0 +1,20 @@
+{% extends "layout.html" %} {% block content %} <div class="content-section">
+    <title> Search for squirrels</title>
+    <h2>{{ subtitle }}</h2>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <div class="form-group">
+                {{ form.hectare_number.label(class="form-control-label") }} {% if form.hectare_number.errors %} {{ form.hectare_number(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback"> {% for error in form.hectare_number.errors%} <span>{{error}}</span> {% endfor %} </div> {% else %} {{ form.hectare_number(class="form-control form-control-lg") }} {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.hectare_letter.label(class="form-control-label") }} {% if form.hectare_letter.errors %} {{ form.hectare_letter(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback"> {% for error in form.hectare_letter.errors%} <span>{{error}}</span> {% endfor %} </div> {% else %} {{ form.hectare_letter(class="form-control form-control-lg") }} {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div> {% endblock content %}

@@ -1,4 +1,4 @@
-# Squirrel Website (to be renamed): Week 4 Project
+# Squirrel Collector: Week 4 Project
 This website uses the Central Park Squirrel Census API.
 
 ## Contributors
