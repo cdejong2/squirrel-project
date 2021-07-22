@@ -3,7 +3,7 @@
 <title> Listen to the squirrels! </title>
 <div class='content-section'>
 <h2>{{ audio1 }}</h2>
-    <audio src="{{url_for('static', filename=file1) }}" type="audio/x-wav" controls autoplay="autoplay">
+    <audio src="{{url_for('static', filename=file1) }}" type="audio/x-wav" controls>
     <p>Your browser does not support the audio element </p>
     <source src="{{url_for('static', filename=file1) }}">
 </audio>
@@ -13,7 +13,7 @@
 </div>
 <div class='content-section'>
 <h2>{{ audio2 }}</h2>
-    <audio src="{{url_for('static', filename=file2) }}" type="audio/x-wav" controls autoplay="autoplay">
+    <audio src="{{url_for('static', filename=file2) }}" type="audio/x-wav" controls>
     <p>Your browser does not support the audio element </p>
     <source src="{{url_for('static', filename=file2) }}">
 </audio>
@@ -23,7 +23,7 @@
 </div>
 <div class='content-section'>
 <h2>{{ audio3 }}</h2>
-    <audio src="{{url_for('static', filename=file3) }}" type="audio/x-wav" controls autoplay="autoplay">
+    <audio src="{{url_for('static', filename=file3) }}" type="audio/x-wav" controls>
     <p>Your browser does not support the audio element </p>
     <source src="{{url_for('static', filename=file3) }}">
 </audio>
