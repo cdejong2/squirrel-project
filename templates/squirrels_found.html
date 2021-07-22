@@ -7,9 +7,9 @@
 <section class='line'>
     <div>
         <form method="post">
-            {% for item in data %}
-                <input type="checkbox" name="squirrel" id="{{ item }}" value ="{{ item }}" > 
-                <label for="{{ item }}"> {{ stringme(item) }}</label><br>
+            {% for index in range(data|length) %}
+                <input type="checkbox" name="squirrel" id="{{ data[index] }}" value ="{{ index }}" > 
+                <label for="{{ data[index] }}"> {{ stringme(data[index]) }}</label><br>
             {% endfor %}
             <input type="submit">
             </form>

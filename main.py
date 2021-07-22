@@ -9,6 +9,7 @@ from sqlalchemy import exc
 from forms import LoginForm, RegistrationForm, SearchForm
 import pandas as pd
 from squirrelapi import find_squirrel, stringme
+import json
 
 # Boilerplate code from previous project --- To Be Replaced
 app = Flask(__name__)
@@ -20,6 +21,20 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+
+#def create_table():
+    #cursor = db.get_db().cursor()
+    #query = """CREATE TABLE IF NOT EXISTS {} (x FLOAT, y FLOAT,
+    #id STRING NOT NULL PRIMARY KEY, hectare STRING,
+    #shift STRING, date STRING, hectare_squirrel_number INT,
+    #age STRING, primary_fur_color STRING, highlight_fur_color STRING,
+    #combination_primary_and STRING, location STRING,
+    #above_ground_sighter STRING, running BOOL, chasing BOOL,
+    #climbing BOOL, eating BOOL, foraging BOOL, other_activities STRING,
+    #kuks BOOL, quaas BOOL, moans BOOL, tail_flags BOOL, tail_twitches BOOL,
+    #approaches BOOL, indifferent BOOL, runs_from BOOL, geocoded_column JSON,
+    #other_interactions STRING)""".format(current_user.get_id())
+    #cursor.execute(query)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -145,7 +160,7 @@ def squirrel_search():
         print(hectare)
         flash(f'Searching in hectare {hectare}', 'success')
         return redirect(url_for('squirrels_found', hectare=hectare))
-    return render_template('squirrel_search.html', form=form)
+    return render_template('squirrel_search.html', subtitle='Look for squirrels:',form=form)
                         
                         
 @app.route("/squirrels_found", methods=['GET', 'POST'])
@@ -153,12 +168,21 @@ def squirrel_search():
 def squirrels_found():
     hectare = request.args.get('hectare', None)
     squirrels = find_squirrel(hectare)
+    print(squirrels)
     squirrel_list = []
     for idx, row in squirrels.iterrows():
-        print(stringme(row))
         squirrel_list.append(row)
+    
     if request.method == 'POST':
-        print(request.form.getlist('squirrel'))
+        index = request.form.getlist('squirrel')
+        selected = squirrels.iloc[index]
+        selected["geocoded_column"] = selected["geocoded_column"].apply(lambda x : json.dumps(x))
+        selected.to_sql(current_user.get_id(),
+                     con=db.engine,
+                     if_exists='append',
+                     index=False)
+        flash(f'Squirrels added!', 'success')
+        return redirect(url_for('home'))
         
     return render_template('squirrels_found.html', data=squirrel_list, stringme=stringme)
 
