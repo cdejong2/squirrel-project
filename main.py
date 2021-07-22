@@ -9,7 +9,7 @@ from sqlalchemy import exc
 from map import createMap
 from forms import LoginForm, RegistrationForm, SearchForm
 import pandas as pd
-from squirrelapi import find_squirrel, stringme
+from squirrelapi import find_squirrel, stringme, strshort
 import json
 
 # Boilerplate code from previous project --- To Be Replaced
@@ -141,7 +141,7 @@ def listen():
     CAPTION1 = "Chirping and barking sounds used to alert other squirrels of danger"
     CAPTION2 = "Kuk: a chirpy vocal communication used for a variety of reasons, sometimes to alert of danger"
     CAPTION3 = "Meow or Quaa: an elongated vocal communication which can indicate the presence of a ground predator such as a dog."
-    
+
     return render_template('listen.html', audio1="Chirps and Barks", cap1=CAPTION1, file1=FILE_NAME1,
                            audio2="Kuks and Quaas", cap2=CAPTION2, file2=FILE_NAME2,
                            audio3="Squirrel Meows", cap3=CAPTION3, file3=FILE_NAME3)
@@ -154,35 +154,54 @@ def squirrel_search():
     if form.validate_on_submit():
         number = form.hectare_number.data
         letter = form.hectare_letter.data
-        hectare = number + letter
+        if number < 10:
+            number = '0' + str(number)
+        else:
+            number = str(number)
+        letter = letter.upper()
+        hectare = number + letter 
         print(hectare)
         flash(f'Searching in hectare {hectare}', 'success')
         return redirect(url_for('squirrels_found', hectare=hectare))
-    return render_template('squirrel_search.html', subtitle='Look for squirrels:',form=form)
-                        
-                        
+    return render_template('squirrel_search.html', subtitle='Look for squirrels:', form=form)
+
+
 @app.route("/squirrels_found", methods=['GET', 'POST'])
 @login_required
 def squirrels_found():
     hectare = request.args.get('hectare', None)
     squirrels = find_squirrel(hectare)
-    print(squirrels)
     squirrel_list = []
     for idx, row in squirrels.iterrows():
         squirrel_list.append(row)
-    
+
     if request.method == 'POST':
         index = request.form.getlist('squirrel')
         selected = squirrels.iloc[index]
-        selected["geocoded_column"] = selected["geocoded_column"].apply(lambda x : json.dumps(x))
+        selected["geocoded_column"] = selected["geocoded_column"].apply(
+            lambda x: json.dumps(x))
         selected.to_sql(current_user.get_id(),
-                     con=db.engine,
-                     if_exists='append',
-                     index=False)
+                        con=db.engine,
+                        if_exists='append',
+                        index=False)
         flash(f'Squirrels added!', 'success')
         return redirect(url_for('home'))
-        
+
     return render_template('squirrels_found.html', data=squirrel_list, stringme=stringme)
+
+
+@app.route("/squirrels")
+@login_required
+def squirrels_showcase():
+    squirrels = pd.read_sql_table(current_user.get_id(),
+                                  con=db.engine)
+    squirrel_list = []
+    for idx, row in squirrels.iterrows():
+        squirrel_list.append(row)
+
+    return render_template('showcase.html', subtitle="View your collection!",
+                           data=squirrel_list, stringme=strshort)
+
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
