@@ -9,7 +9,7 @@ from sqlalchemy import exc
 from map import createMap
 from forms import LoginForm, RegistrationForm, SearchForm
 import pandas as pd
-from squirrelapi import find_squirrel, stringme
+from squirrelapi import find_squirrel, stringme, strshort
 import json
 
 # Boilerplate code from previous project --- To Be Replaced
@@ -166,7 +166,6 @@ def squirrel_search():
 def squirrels_found():
     hectare = request.args.get('hectare', None)
     squirrels = find_squirrel(hectare)
-    print(squirrels)
     squirrel_list = []
     for idx, row in squirrels.iterrows():
         squirrel_list.append(row)
@@ -183,6 +182,19 @@ def squirrels_found():
         return redirect(url_for('home'))
         
     return render_template('squirrels_found.html', data=squirrel_list, stringme=stringme)
+
+@app.route("/squirrels")
+@login_required
+def squirrels_showcase():
+    squirrels = pd.read_sql_table(current_user.get_id(),
+                                  con=db.engine)
+    squirrel_list = []
+    for idx, row in squirrels.iterrows():
+        squirrel_list.append(row)
+    
+    return render_template('showcase.html', subtitle = "View your collection!",
+                          data=squirrel_list, stringme=strshort)
+
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

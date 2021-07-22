@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %} 
+<title> Squirrels Found </title>
+<h2 style="text-align:center">{{ subtitle }}</h2>
+
+<ul class="cards">
+    {% for index in range(data|length) %}
+  <li>
+    <a href="" class="card">
+      <img src="static/squirrel.png" class="card__image" alt="" />
+      <div class="card__overlay">        
+        <div class="card__header">
+          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
+          <img class="card__thumb" src="static/squirrel.png" alt="" />
+          <div class="card__header-text">
+            <h3 class="card__title">{{data[index][2]}}</h3>
+          </div>
+        </div>
+        <p class="card__description">{{ stringme(data[index] )}}</p>
+      </div>
+    </a>
+  </li> 
+    {% endfor %}
+</ul>
+
+{% endblock content %}
