@@ -141,7 +141,7 @@ def listen():
     CAPTION1 = "Chirping and barking sounds used to alert other squirrels of danger"
     CAPTION2 = "Kuk: a chirpy vocal communication used for a variety of reasons, sometimes to alert of danger"
     CAPTION3 = "Meow or Quaa: an elongated vocal communication which can indicate the presence of a ground predator such as a dog."
-    
+
     return render_template('listen.html', audio1="Chirps and Barks", cap1=CAPTION1, file1=FILE_NAME1,
                            audio2="Kuks and Quaas", cap2=CAPTION2, file2=FILE_NAME2,
                            audio3="Squirrel Meows", cap3=CAPTION3, file3=FILE_NAME3)
@@ -158,9 +158,9 @@ def squirrel_search():
         print(hectare)
         flash(f'Searching in hectare {hectare}', 'success')
         return redirect(url_for('squirrels_found', hectare=hectare))
-    return render_template('squirrel_search.html', subtitle='Look for squirrels:',form=form)
-                        
-                        
+    return render_template('squirrel_search.html', subtitle='Look for squirrels:', form=form)
+
+
 @app.route("/squirrels_found", methods=['GET', 'POST'])
 @login_required
 def squirrels_found():
@@ -169,19 +169,21 @@ def squirrels_found():
     squirrel_list = []
     for idx, row in squirrels.iterrows():
         squirrel_list.append(row)
-    
+
     if request.method == 'POST':
         index = request.form.getlist('squirrel')
         selected = squirrels.iloc[index]
-        selected["geocoded_column"] = selected["geocoded_column"].apply(lambda x : json.dumps(x))
+        selected["geocoded_column"] = selected["geocoded_column"].apply(
+            lambda x: json.dumps(x))
         selected.to_sql(current_user.get_id(),
-                     con=db.engine,
-                     if_exists='append',
-                     index=False)
+                        con=db.engine,
+                        if_exists='append',
+                        index=False)
         flash(f'Squirrels added!', 'success')
         return redirect(url_for('home'))
-        
+
     return render_template('squirrels_found.html', data=squirrel_list, stringme=stringme)
+
 
 @app.route("/squirrels")
 @login_required
@@ -191,9 +193,9 @@ def squirrels_showcase():
     squirrel_list = []
     for idx, row in squirrels.iterrows():
         squirrel_list.append(row)
-    
-    return render_template('showcase.html', subtitle = "View your collection!",
-                          data=squirrel_list, stringme=strshort)
+
+    return render_template('showcase.html', subtitle="View your collection!",
+                           data=squirrel_list, stringme=strshort)
 
 
 if __name__ == '__main__':

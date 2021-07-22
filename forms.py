@@ -29,6 +29,8 @@ class LoginForm(FlaskForm):
 
 
 class SearchForm(FlaskForm):
-    hectare_number = StringField('Hectare Number (01 - 42)',validators=[DataRequired()])
-    hectare_letter = StringField('Hectare Letter (A - I)', validators=[DataRequired()])
+    hectare_number = StringField(
+        'Hectare Number (01 - 42)', validators=[DataRequired()])
+    hectare_letter = StringField(
+        'Hectare Letter (A - I)', validators=[DataRequired()])
     submit = SubmitField('Search')

@@ -2,13 +2,13 @@ import pandas as pd
 from sodapy import Socrata
 
 
-
 def find_squirrel(hectare):
     with Socrata("data.cityofnewyork.us", None) as client:
         results = client.get("vfnx-vebw", hectare=hectare)
 
     # Convert to pandas DataFrame
     return pd.DataFrame.from_records(results)
+
 
 def stringme(row):
     activity = []
@@ -38,10 +38,10 @@ def stringme(row):
         activity.append('indifferent')
     if row["runs_from"]:
         activity.append('runs from')
-    
+
     return ("Color: {}\tAge: {}\tLocation: {}\tActivities: {}"
             .format(row['primary_fur_color'],
-                    row["age"],row["location"],
+                    row["age"], row["location"],
                     ' '.join([str(elem) for elem in activity])))
 
 
@@ -73,7 +73,7 @@ def strshort(row):
         activity.append('indifferent')
     if row["runs_from"]:
         activity.append('runs from')
-    
+
     return ("{} {} who enjoys {}"
             .format(row['primary_fur_color'],
                     row["age"],
