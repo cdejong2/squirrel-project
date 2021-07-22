@@ -1,10 +1,34 @@
 {% extends "layout.html" %}
 {% block content %}
-<title> Listen </title>
-<h2>{{ songName }}</h2>
-    <audio src="{{url_for('static', filename=file) }}" type="audio/x-wav" controls autoplay="autoplay">
+<title> Listen to the squirrels! </title>
+<div class='content-section'>
+<h2>{{ audio1 }}</h2>
+    <audio src="{{url_for('static', filename=file1) }}" type="audio/x-wav" controls autoplay="autoplay">
     <p>Your browser does not support the audio element </p>
-    <source src="{{url_for('static', filename=file) }}">
+    <source src="{{url_for('static', filename=file1) }}">
 </audio>
-<p>{{ file }}</p>
+    <p></p>
+    <caption>{{ cap1 }}</caption>
+    <p>Filename: {{ file1 }}</p>
+</div>
+<div class='content-section'>
+<h2>{{ audio2 }}</h2>
+    <audio src="{{url_for('static', filename=file2) }}" type="audio/x-wav" controls autoplay="autoplay">
+    <p>Your browser does not support the audio element </p>
+    <source src="{{url_for('static', filename=file2) }}">
+</audio>
+    <p></p>
+    <caption>{{ cap2 }}</caption>
+    <p>Filename: {{ file2 }}</p>
+</div>
+<div class='content-section'>
+<h2>{{ audio3 }}</h2>
+    <audio src="{{url_for('static', filename=file3) }}" type="audio/x-wav" controls autoplay="autoplay">
+    <p>Your browser does not support the audio element </p>
+    <source src="{{url_for('static', filename=file3) }}">
+</audio>
+    <p></p>
+    <caption>{{ cap3 }}</caption>
+    <p>Filename: {{ file3 }}</p>
+</div>
 {% endblock content %}

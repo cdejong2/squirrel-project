@@ -1,5 +1,6 @@
 {% extends "layout.html" %} {% block content %} <div class="content-section">
     <title> Register</title>
+    <h2 class="text-center content-section" style= 'color: white; background-color: #5b4f45;'>Registration</h2>
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
@@ -16,8 +17,9 @@
                 <div class="invalid-feedback"> {% for error in form.confirm_password.errors%} <span>{{error}}</span> {% endfor %} </div> {% else %} {{ form.confirm_password(class="form-control form-control-lg") }} {% endif %}
             </div>
         </fieldset>
-        <div class="form-group">
+        <div class="form-group text-center" style= 'margin: 20px;'>
             {{ form.submit(class="btn btn-outline-info") }}
+            <p style= 'margin: 20px;'>Already have an account? <a href="/login" class="pe-auto">Login</a></p>
         </div>
     </form>
 </div> {% endblock content %}
