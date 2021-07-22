@@ -154,7 +154,12 @@ def squirrel_search():
     if form.validate_on_submit():
         number = form.hectare_number.data
         letter = form.hectare_letter.data
-        hectare = number + letter
+        if number < 10:
+            number = '0' + str(number)
+        else:
+            number = str(number)
+        letter = letter.upper()
+        hectare = number + letter 
         print(hectare)
         flash(f'Searching in hectare {hectare}', 'success')
         return redirect(url_for('squirrels_found', hectare=hectare))
