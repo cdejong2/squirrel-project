@@ -122,16 +122,25 @@ def register():
 def learn():
     return render_template(
         'learn.html',
-        subtitle='Learn',
-        text='More information about the Squirrel Census and the \
-        API will be provided here.')
+        subtitle='Learn More About the Squirrels',
+        link1='2018 Central Park Squirrel Census',
+        link2='The Squirrel Census Project',
+        link3='Central Park Squirrels API',
+        link4='The Eastern Gray Squirrel')
 
 
 @app.route("/listen")
 def listen():
-    TITLE = "Listen"
-    FILE_NAME = "Squirrel Chirping and Barking.wav"
-    return render_template('listen.html', songName=TITLE, file=FILE_NAME)
+    FILE_NAME1 = "Squirrel Chirping and Barking.wav"
+    FILE_NAME2 = "Squirrel making quaa and kuk sounds.wav"
+    FILE_NAME3 = "Gray Squirrel Meowing Sounds.wav"
+    CAPTION1 = "Chirping and barking sounds used to alert other squirrels of danger"
+    CAPTION2 = "Kuk: a chirpy vocal communication used for a variety of reasons, sometimes to alert of danger"
+    CAPTION3 = "Meow or Quaa: an elongated vocal communication which can indicate the presence of a ground predator such as a dog."
+    
+    return render_template('listen.html', audio1="Chirps and Barks", cap1=CAPTION1, file1=FILE_NAME1,
+                           audio2="Kuks and Quaas", cap2=CAPTION2, file2=FILE_NAME2,
+                           audio3="Squirrel Meows", cap3=CAPTION3, file3=FILE_NAME3)
 
 
 if __name__ == '__main__':
