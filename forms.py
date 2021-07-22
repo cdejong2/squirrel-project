@@ -3,12 +3,16 @@ from wtforms import (
     StringField,
     TextAreaField,
     SubmitField,
-    PasswordField
+    PasswordField,
+    IntegerField
 )
 from wtforms.validators import (
     DataRequired,
     Email,
-    EqualTo
+    EqualTo,
+    Length,
+    NumberRange,
+    ValidationError
 )
 
 
@@ -29,6 +33,15 @@ class LoginForm(FlaskForm):
 
 
 class SearchForm(FlaskForm):
-    hectare_number = StringField('Hectare Number (01 - 42)',validators=[DataRequired()])
-    hectare_letter = StringField('Hectare Letter (A - I)', validators=[DataRequired()])
+    def check_letter(form, field):
+        if not 'A' <= field.data <= 'I':
+            raise ValidationError('Field must be A - I')
+            
+    hectare_number = IntegerField('Hectare Number (01 - 42)',validators=
+                                 [DataRequired(),
+                                  NumberRange(1, 42,
+                                              'Must be a number between 01 - 42')])
+    hectare_letter = StringField('Hectare Letter (A - I)',
+                                 validators=[DataRequired(),
+                                             Length(min=1, max=1), check_letter])
     submit = SubmitField('Search')
