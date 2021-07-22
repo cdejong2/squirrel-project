@@ -29,6 +29,10 @@
                         <a class="nav-item nav-link" href="/">Home</a>
                         <a class="nav-item nav-link" href="/learn">Learn</a>
                         <a class="nav-item nav-link" href="/listen">Listen</a>
+                        {% if current_user.is_authenticated %}
+                        <a class="nav-item nav-link" href="/squirrel_search">Squirrel Search</a>
+                        <a class="nav-item nav-link" href="/logout">Logout</a>
+                        {% else %}
                         <div class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link" href="/register" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Register/Login </a>
                             <div class="dropdown-menu">
@@ -36,6 +40,7 @@
                                 <a class="dropdown-item" href="/login">Login</a>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -43,8 +48,8 @@
     </header>
     <main role="main" class="container">
         <div class="row">
-            <div class="col-md-0">
-                <h1>Welcome!</h1> {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %} <div class="alert alert-{{ category }}">
+            <div class="col-md-0" style= 'margin-top: 75px; margin-bottom: 25px;'>
+                 {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %} <div class="alert alert-{{ category }}">
                     {{ message }}
                 </div> {% endfor %} {% endif %} {% endwith %} {% block content %}{% endblock %}
             </div>

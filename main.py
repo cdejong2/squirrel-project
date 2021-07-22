@@ -24,20 +24,6 @@ login_manager.init_app(app)
 createMap()
 
 
-#def create_table():
-    #cursor = db.get_db().cursor()
-    #query = """CREATE TABLE IF NOT EXISTS {} (x FLOAT, y FLOAT,
-    #id STRING NOT NULL PRIMARY KEY, hectare STRING,
-    #shift STRING, date STRING, hectare_squirrel_number INT,
-    #age STRING, primary_fur_color STRING, highlight_fur_color STRING,
-    #combination_primary_and STRING, location STRING,
-    #above_ground_sighter STRING, running BOOL, chasing BOOL,
-    #climbing BOOL, eating BOOL, foraging BOOL, other_activities STRING,
-    #kuks BOOL, quaas BOOL, moans BOOL, tail_flags BOOL, tail_twitches BOOL,
-    #approaches BOOL, indifferent BOOL, runs_from BOOL, geocoded_column JSON,
-    #other_interactions STRING)""".format(current_user.get_id())
-    #cursor.execute(query)
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
@@ -112,7 +98,8 @@ def logout():
     db.session.add(user)
     db.session.commit()
     logout_user()
-    return render_template("logout.html")
+    flash(f'Logged out!', 'success')
+    return redirect(url_for("home"))
 
 
 @app.route("/register", methods=['GET', 'POST'])

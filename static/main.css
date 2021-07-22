@@ -12,31 +12,26 @@ h5,
 h6 {
     color: #000000;
 }
+#label1{
+    border: 1px solid #000000;
+    border-radius: 3px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: white; 
+    background-color: #5b4f45;
+    padding: 20px;
+}
 
 #socials {
     width: 320px;
     padding: 10px 10px 20px 10px;
     background-color: white;
     border: 1px solid #BFBFBF;
-    margin: 10px;
+    margin-bottom: 20px;
 }
 
 #socials:hover {
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
-}
-
-
-
-.social {
-    grid-area: myArea;
-}
-
-.grid-container-home {
-    display: grid;
-    grid-template-areas: '. .'
-        'myArea myArea';
-    grid-gap: 10px;
-    padding: 10px;
+    box-shadow: 0 0 2px 1px #5b4f45;
 }
 
 .caption {
@@ -62,7 +57,7 @@ h6 {
 
 .content-section {
     background: #f1ead7;
-    padding: 10px 20px;
+    padding: 30px;
     border: 1px solid #000000;
     border-radius: 3px;
     margin-bottom: 10px;
@@ -135,11 +130,3 @@ a:visited {
     text-decoration: none;
 }
 
-
-.contentblock {
-    background: #f1ead7;
-    padding: 10px 20px;
-    border: 1px solid #000000;
-    border-radius: 3px;
-    margin-bottom: 10px;
-}
