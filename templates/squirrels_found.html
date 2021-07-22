@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %} 
+<title> Squirrels Found </title>
+<h2>{{ subtitle }}</h2>
+<p>{{ text }}</p>
+
+<section class='line'>
+    <div>
+        <form method="post">
+            {% for index in range(data|length) %}
+                <input type="checkbox" name="squirrel" id="{{ data[index] }}" value ="{{ index }}" > 
+                <label for="{{ data[index] }}"> {{ stringme(data[index]) }}</label><br>
+            {% endfor %}
+            <input type="submit">
+            </form>
+
+    </div>
+</section>
+
+{% endblock content %}
