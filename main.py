@@ -158,7 +158,7 @@ def squirrel_search():
             number = '0' + str(number)
         else:
             number = str(number)
-        letter.upper()
+        letter = letter.upper()
         hectare = number + letter 
         print(hectare)
         flash(f'Searching in hectare {hectare}', 'success')
