@@ -1,21 +1,39 @@
 {% extends "layout.html" %} {% block content %} <title> Home</title>
-<div class=' grid-container-home'>
-    <div class='content-section'>
+<div class="row justify-content-evenly">
+    <div class='col'>
+        <div class='content-section'>
         <h2>{{ subtitle }}</h2>
         <p>{{ text }}</p>
+            <a href="/register" class="pe-auto"><button class="btn btn-outline-dark" type="button">Register</button></a>
     </div>
-    <div class='content-section'>
-        <h2>Central Park Squirrels</h2>
-        <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src='/static/example.html' height="600" width="600"></iframe>
+    </div>
+    
+    <div class='col'>
+    <div class='content-section container'>
+        <h2 style="text-align:center">Central Park Squirrels</h2>
+        <p style="text-align:center">        
+            <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src='/static/example.html' height="600" width="600"></iframe>
+        </p>
         <div class='caption'>
             <p>Subset of 1000 squirrels, data courtesy of the Squirrel Census API.</p>
         </div>
     </div>
+    </div>
+    <div class="row" >
     <div class='content-section container social'>
-        <h1>Social Media</h1>
-        <p>click on image to be redirected to instagram accounts</p>
+        <h1 style="text-align:center">Squirrel Instagram Pages</h1>
+        <p style="text-align:center">click on image to be redirected to instagram accounts</p>
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-evenly" >
+                <div id='socials'>
+                    <a href="https://www.instagram.com/squirrelcensus/">
+                        <img src='/static/squirrelcensus.png' alt="@squirrelcensus" style="width:300px;">
+                        <div class='caption'>
+                            <p>@squirrelcensus on Instagram</p>
+                        </div>
+                    </a>
+                </div>
+                
                 <div id='socials'>
                     <a href="https://www.instagram.com/squirrelsofvassar/">
                         <img src='/static/sofv.png' alt="@squirrelsofvassar" style="width:300px;">
@@ -34,4 +52,5 @@
                 </div>
             </div>
         </div>
-    </div> {% endblock content %}
+    </div>
+        </div>{% endblock content %}
