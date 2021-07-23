@@ -36,11 +36,11 @@ class SearchForm(FlaskForm):
     def check_letter(form, field):
         if not 'A' <= field.data <= 'I' and not 'a' <= field.data <= 'i':
             raise ValidationError('Field must be A - I')
-            
-    hectare_number = IntegerField('Hectare Number (01 - 42)',validators=
-                                 [DataRequired(),
-                                  NumberRange(1, 42,
-                                              'Must be 01 - 42')])
+
+    hectare_number = IntegerField('Hectare Number (01 - 42)',
+                                  validators=[DataRequired(),
+                                              NumberRange(1, 42,
+                                                          'Must be 01 - 42')])
     hectare_letter = StringField('Hectare Letter (A - I)',
                                  validators=[DataRequired(),
                                              Length(min=1, max=1),

@@ -32,21 +32,21 @@ def load_user(user_id):
 def create_table():
     query = text("""CREATE TABLE IF NOT EXISTS ' {} ' (
     x FLOAT, y FLOAT,
-    id STRING NOT NULL PRIMARY KEY, 
+    id STRING NOT NULL PRIMARY KEY,
     hectare STRING,
-    shift STRING, date STRING, 
+    shift STRING, date STRING,
     hectare_squirrel_number INT,
-    age STRING, primary_fur_color STRING, 
+    age STRING, primary_fur_color STRING,
     highlight_fur_color STRING,
-    combination_primary_and STRING, 
+    combination_primary_and STRING,
     location STRING,
-    above_ground_sighter STRING, 
+    above_ground_sighter STRING,
     running BOOL, chasing BOOL,
-    climbing BOOL, eating BOOL, 
+    climbing BOOL, eating BOOL,
     foraging BOOL, other_activities STRING,
-    kuks BOOL, quaas BOOL, moans BOOL, 
+    kuks BOOL, quaas BOOL, moans BOOL,
     tail_flags BOOL, tail_twitches BOOL,
-    approaches BOOL, indifferent BOOL, 
+    approaches BOOL, indifferent BOOL,
     runs_from BOOL, geocoded_column JSON,
     other_interactions STRING)""".format(str(current_user.get_id())))
     db.engine.execute(query)
@@ -161,13 +161,19 @@ def listen():
     FILE_NAME1 = "Squirrel Chirping and Barking.wav"
     FILE_NAME2 = "Squirrel making quaa and kuk sounds.wav"
     FILE_NAME3 = "Gray Squirrel Meowing Sounds.wav"
-    CAPTION1 = "Chirping and barking sounds used to alert other squirrels of danger"
-    CAPTION2 = "Kuk: a chirpy vocal communication used for a variety of reasons, sometimes to alert of danger"
-    CAPTION3 = "Meow or Quaa: an elongated vocal communication which can indicate the presence of a ground predator such as a dog."
+    CAPTION1 = "Chirping and barking sounds used to alert other \
+    squirrels of danger"
+    CAPTION2 = "Kuk: a chirpy vocal communication used for a variety \
+    of reasons, sometimes to alert of danger"
+    CAPTION3 = "Meow or Quaa: an elongated vocal communication which \
+    can indicate the presence of a ground predator such as a dog."
 
-    return render_template('listen.html', audio1="Chirps and Barks", cap1=CAPTION1, file1=FILE_NAME1,
-                           audio2="Kuks and Quaas", cap2=CAPTION2, file2=FILE_NAME2,
-                           audio3="Squirrel Meows", cap3=CAPTION3, file3=FILE_NAME3)
+    return render_template('listen.html',
+                           audio1="Chirps and Barks", cap1=CAPTION1,
+                           file1=FILE_NAME1, audio2="Kuks and Quaas",
+                           cap2=CAPTION2, file2=FILE_NAME2,
+                           audio3="Squirrel Meows", cap3=CAPTION3,
+                           file3=FILE_NAME3)
 
 
 @app.route("/squirrel_search", methods=['GET', 'POST'])
@@ -182,11 +188,12 @@ def squirrel_search():
         else:
             number = str(number)
         letter = letter.upper()
-        hectare = number + letter 
+        hectare = number + letter
         print(hectare)
         flash(f'Searching in hectare {hectare}', 'success')
         return redirect(url_for('squirrels_found', hectare=hectare))
-    return render_template('squirrel_search.html', subtitle='Look for squirrels:', form=form)
+    return render_template('squirrel_search.html',
+                           subtitle='Look for squirrels:', form=form)
 
 
 @app.route("/squirrels_found", methods=['GET', 'POST'])
@@ -211,7 +218,8 @@ def squirrels_found():
         flash(f'Squirrels added!', 'success')
         return redirect(url_for('home'))
 
-    return render_template('squirrels_found.html', data=squirrel_list, stringme=stringme)
+    return render_template('squirrels_found.html', data=squirrel_list,
+                           stringme=stringme)
 
 
 @app.route("/squirrels")
@@ -228,7 +236,8 @@ def squirrels_showcase():
         for idx, row in squirrels.iterrows():
             squirrel_list.append(row)
 
-        return render_template('showcase.html', subtitle="View your collection!",
+        return render_template('showcase.html',
+                               subtitle="View your collection!",
                                data=squirrel_list, stringme=strshort)
 
 
