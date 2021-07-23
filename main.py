@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_behind_proxy import FlaskBehindProxy
 from flask_login import LoginManager, UserMixin, login_required, \
     login_user, logout_user, current_user
-from sqlalchemy import exc
+from sqlalchemy import exc, text
 from map import createMap
 from forms import LoginForm, RegistrationForm, SearchForm
 import pandas as pd
@@ -27,6 +27,29 @@ createMap()
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
+
+
+def create_table():
+    query = text("""CREATE TABLE IF NOT EXISTS ' {} ' (
+    x FLOAT, y FLOAT,
+    id STRING NOT NULL PRIMARY KEY, 
+    hectare STRING,
+    shift STRING, date STRING, 
+    hectare_squirrel_number INT,
+    age STRING, primary_fur_color STRING, 
+    highlight_fur_color STRING,
+    combination_primary_and STRING, 
+    location STRING,
+    above_ground_sighter STRING, 
+    running BOOL, chasing BOOL,
+    climbing BOOL, eating BOOL, 
+    foraging BOOL, other_activities STRING,
+    kuks BOOL, quaas BOOL, moans BOOL, 
+    tail_flags BOOL, tail_twitches BOOL,
+    approaches BOOL, indifferent BOOL, 
+    runs_from BOOL, geocoded_column JSON,
+    other_interactions STRING)""".format(str(current_user.get_id())))
+    db.engine.execute(query)
 
 
 class User(db.Model):
@@ -180,6 +203,7 @@ def squirrels_found():
         selected = squirrels.iloc[index]
         selected["geocoded_column"] = selected["geocoded_column"].apply(
             lambda x: json.dumps(x))
+        create_table()
         selected.to_sql(current_user.get_id(),
                         con=db.engine,
                         if_exists='append',
@@ -193,14 +217,19 @@ def squirrels_found():
 @app.route("/squirrels")
 @login_required
 def squirrels_showcase():
-    squirrels = pd.read_sql_table(current_user.get_id(),
-                                  con=db.engine)
-    squirrel_list = []
-    for idx, row in squirrels.iterrows():
-        squirrel_list.append(row)
+    try:
+        squirrels = pd.read_sql_table(current_user.get_id(),
+                                      con=db.engine)
+    except ValueError:
+        flash(f'No squirrels found!', 'success')
+        return redirect(url_for('home'))
+    else:
+        squirrel_list = []
+        for idx, row in squirrels.iterrows():
+            squirrel_list.append(row)
 
-    return render_template('showcase.html', subtitle="View your collection!",
-                           data=squirrel_list, stringme=strshort)
+        return render_template('showcase.html', subtitle="View your collection!",
+                               data=squirrel_list, stringme=strshort)
 
 
 if __name__ == '__main__':
