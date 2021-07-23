@@ -1,81 +1,81 @@
 {% extends "layout.html" %} {% block content %} <title> Home</title>
-<div class="row">
-    <div class='col content-section'>
-        <h2>{{ subtitle }}</h2>
-        <p>{{ text }}</p>
-        <p>How to use: </p>
-        <ol>
-            <li>Make an account or log in if you're already a member!</li>
-            <li>Click the Find a Squirrel button!</li>
-            <li>Enter a letter and a number to choose a hectare of Central Park</li>
-            <li>Choose your squirrel from the list!</li>
-        </ol>
-        <p>You can see all the squirrels you've added in your account page.
-            If you're interested in learning more, try the links in our Learn page,
-            or listen to the sounds of our squirrels on the Listen page!</p>
-        <h3><i>Join Squirrel Collector today!</i></h3>
-        <a href="/register"><button class="btn btn-outline-dark" type="button">Register</button></a>
-        <a href="/login"><button class="btn btn-outline-dark" type="button">Login</button></a>
-    </div>
-    <div class='col'>
-        <div class='content-section'>
+<div class="container">
+    <div class="row align-items-md-stretch gap-3">
+        <div class='col-md content-section'>
+            <h2>{{ subtitle }}</h2>
+            <p>{{ text }}</p>
+            <p>How to use: </p>
+            <ol>
+                <li>Make an account or log in if you're already a member!</li>
+                <li>Click the Find a Squirrel button!</li>
+                <li>Enter a letter and a number to choose a hectare of Central Park</li>
+                <li>Choose your squirrel from the list!</li>
+            </ol>
+            <p>You can see all the squirrels you've added in your account page. If you're interested in learning more, try the links in our Learn page, or listen to the sounds of our squirrels on the Listen page!</p>
+            <h3><i>Join Squirrel Collector today!</i></h3>
+            <a href="/register"><button class="btn btn-outline-dark" type="button">Register</button></a>
+            <a href="/login"><button class="btn btn-outline-dark" type="button">Login</button></a>
+        </div>
+        <div class='col-md content-section'>
             <h2 style="text-align:center">Central Park Squirrels</h2>
-            <p style="text-align:center">
-                <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src='/static/example.html' height="600" width="600"></iframe>
-            </p>
+            <div class='container1'>
+                <p style="text-align:center">
+                    <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src='/static/example.html' class="responsive-iframe"></iframe>
+                </p>
+            </div>
             <div class='caption'>
                 <p>Subset of 1000 squirrels, data courtesy of the Squirrel Census API.</p>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class='content-section container social'>
-        <h1 style="text-align:center">Squirrel Instagram Pages</h1>
-        <p style="text-align:center">Check out the squirrels of college campuses across the US!</p>
-        <div class="container">
-            <div class="row justify-content-evenly">
-                <div id='socials'>
-                    <a href="https://www.instagram.com/squirrelcensus/">
-                        <img src='/static/squirrelcensus.png' alt="@squirrelcensus" style="width:300px;">
-                        <div class='caption'>
-                            <p>@squirrelcensus on Instagram</p>
-                        </div>
-                    </a>
-                </div>
-                <div id='socials'>
-                    <a href="https://www.instagram.com/squirrelsofvassar/">
-                        <img src='/static/sofv.png' alt="@squirrelsofvassar" style="width:300px;">
-                        <div class='caption'>
-                            <p>@squirrelsofvassar on Instagram</p>
-                        </div>
-                    </a>
-                </div>
-                <div id='socials'>
-                    <a href="https://www.instagram.com/squirrels_of_hopkins/">
-                        <img src='/static/sofjh.png' alt="@squirrels_of_hopkins" style="width:300px;height:300px;">
-                        <div class='caption'>
-                            <p>@squirrels_of_hopkins on Instagram</p>
-                        </div>
-                    </a>
-                </div>
-                <div id='socials'>
-                    <a href="https://www.instagram.com/squirrelsofcalvin/">
-                        <img src='/static/squirrelsofcalvin.png' alt="@squirrelsofcalvin" style="width:300px;height:300px;">
-                        <div class='caption'>
-                            <p>@squirrelsofcalvin on Instagram</p>
-                        </div>
-                    </a>
-                </div>
-                <div id='socials'>
-                    <a href="https://www.instagram.com/squirrels_of_uga/">
-                        <img src='/static/squirrels_of_uga.png' alt="@squirrels_of_uga" style="width:300px;height:300px;">
-                        <div class='caption'>
-                            <p>@squirrels_of_uga on Instagram</p>
-                        </div>
-                    </a>
+    <div class="row">
+        <div class='content-section container social'>
+            <h1 style="text-align:center">Squirrel Instagram Pages</h1>
+            <p style="text-align:center">Check out the squirrels of college campuses across the US!</p>
+            <div class="container">
+                <div class="row justify-content-evenly">
+                    <div id='socials'>
+                        <a href="https://www.instagram.com/squirrelcensus/">
+                            <img src='/static/squirrelcensus.png' alt="@squirrelcensus" style=" width: 100%; max-width: 300px; height: auto;">
+                            <div class='caption'>
+                                <p>@squirrelcensus on Instagram</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div id='socials'>
+                        <a href="https://www.instagram.com/squirrelsofvassar/">
+                            <img src='/static/sofv.png' alt="@squirrelsofvassar" style=" width: 100%; max-width: 300px; height: auto;">
+                            <div class='caption'>
+                                <p>@squirrelsofvassar on Instagram</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div id='socials'>
+                        <a href="https://www.instagram.com/squirrels_of_hopkins/">
+                            <img src='/static/sofjh.png' alt="@squirrels_of_hopkins" style=" width: 100%; max-width: 300px; height: auto;">
+                            <div class='caption'>
+                                <p>@squirrels_of_hopkins on Instagram</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div id='socials'>
+                        <a href="https://www.instagram.com/squirrelsofcalvin/">
+                            <img src='/static/squirrelsofcalvin.png' alt="@squirrelsofcalvin" style=" width: 100%; max-width: 300px; height: auto;">
+                            <div class='caption'>
+                                <p>@squirrelsofcalvin on Instagram</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div id='socials'>
+                        <a href="https://www.instagram.com/squirrels_of_uga/">
+                            <img src='/static/squirrels_of_uga.png' alt="@squirrels_of_uga" style=" width: 100%; max-width: 300px; height: auto;">
+                            <div class='caption'>
+                                <p>@squirrels_of_uga on Instagram</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div> {% endblock content %}
+</div>{% endblock content %}
